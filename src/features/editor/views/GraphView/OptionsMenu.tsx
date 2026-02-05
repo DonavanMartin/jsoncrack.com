@@ -4,7 +4,7 @@ import { useHotkeys } from "@mantine/hooks";
 import styled from "styled-components";
 import { event as gaEvent } from "nextjs-google-analytics";
 import { BsCheck2 } from "react-icons/bs";
-import { LuChevronRight, LuImageDown, LuMenu } from "react-icons/lu";
+import { LuChevronRight, LuImageDown, LuMenu, LuUnfoldVertical, LuFoldVertical } from "react-icons/lu";
 import { TiFlowMerge } from "react-icons/ti";
 import useConfig from "../../../../store/useConfig";
 import { useModal } from "../../../../store/useModal";
@@ -37,6 +37,8 @@ export const OptionsMenu = () => {
   const rulersEnabled = useConfig(state => state.rulersEnabled);
   const imagePreviewEnabled = useConfig(state => state.imagePreviewEnabled);
   const setDirection = useGraph(state => state.setDirection);
+  const expandAll = useGraph(state => state.expandAll);
+  const collapseAll = useGraph(state => state.collapseAll);
   const direction = useGraph(state => state.direction);
   const setVisible = useModal(state => state.setVisible);
   const [coreKey, setCoreKey] = React.useState("CTRL");
@@ -110,6 +112,27 @@ export const OptionsMenu = () => {
             closeMenuOnClick={false}
           >
             Rotate Layout
+          </Menu.Item>
+          <Menu.Divider />
+          <Menu.Item
+            leftSection={<LuUnfoldVertical color="gray" />}
+            onClick={() => {
+              expandAll();
+              gaEvent("expand_all_nodes", {});
+            }}
+            closeMenuOnClick={false}
+          >
+            <Text size="xs">Expand All</Text>
+          </Menu.Item>
+          <Menu.Item
+            leftSection={<LuFoldVertical color="gray" />}
+            onClick={() => {
+              collapseAll();
+              gaEvent("collapse_all_nodes", {});
+            }}
+            closeMenuOnClick={false}
+          >
+            <Text size="xs">Collapse All</Text>
           </Menu.Item>
           <Menu.Divider />
           <Menu position="right" trigger="hover" offset={0}>

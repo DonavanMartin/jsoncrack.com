@@ -84,11 +84,14 @@ const GraphCanvas = ({ isWidget }: GraphProps) => {
   const setLoading = useGraph(state => state.setLoading);
   const centerView = useGraph(state => state.centerView);
   const direction = useGraph(state => state.direction);
-  const nodes = useGraph(state => state.nodes);
-  const edges = useGraph(state => state.edges);
+  const getFilteredGraph = useGraph(state => state.getFilteredGraph);
+  const collapsedNodeIds = useGraph(state => state.collapsedNodeIds);
   const colorScheme = useComputedColorScheme();
   const [paneWidth, setPaneWidth] = React.useState(2000);
   const [paneHeight, setPaneHeight] = React.useState(2000);
+
+  // Get filtered nodes and edges based on collapsed state
+  const { nodes, edges } = React.useMemo(() => getFilteredGraph(), [getFilteredGraph, collapsedNodeIds]);
 
   const onLayoutChange = React.useCallback(
     (layout: ElkRoot) => {

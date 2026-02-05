@@ -16,6 +16,7 @@ export interface Graph {
   selectedNode: NodeData | null;
   path: string;
   aboveSupportedLimit: boolean;
+  collapsedNodeIds: Set<string>;
 }
 
 const initialStates: Graph = {
@@ -28,6 +29,7 @@ const initialStates: Graph = {
   selectedNode: null,
   path: "",
   aboveSupportedLimit: false,
+  collapsedNodeIds: new Set(),
 };
 
 interface GraphActions {
@@ -43,11 +45,15 @@ interface GraphActions {
   centerView: () => void;
   clearGraph: () => void;
   setZoomFactor: (zoomFactor: number) => void;
+  toggleNodeCollapse: (nodeId: string) => void;
+  expandAll: () => void;
+  collapseAll: () => void;
+  getFilteredGraph: () => { nodes: NodeData[]; edges: EdgeData[] };
 }
 
 const useGraph = create<Graph & GraphActions>((set, get) => ({
   ...initialStates,
-  clearGraph: () => set({ nodes: [], edges: [], loading: false }),
+  clearGraph: () => set({ nodes: [], edges: [], loading: false, collapsedNodeIds: new Set() }),
   setSelectedNode: nodeData => set({ selectedNode: nodeData }),
   setGraph: (data, options) => {
     const { nodes, edges } = parser(data ?? useJson.getState().json);
@@ -64,6 +70,7 @@ const useGraph = create<Graph & GraphActions>((set, get) => ({
       nodes,
       edges,
       aboveSupportedLimit: false,
+      collapsedNodeIds: new Set(),
       ...options,
     });
   },
@@ -101,6 +108,80 @@ const useGraph = create<Graph & GraphActions>((set, get) => ({
   },
   toggleFullscreen: fullscreen => set({ fullscreen }),
   setViewPort: viewPort => set({ viewPort }),
+  toggleNodeCollapse: (nodeId: string) => {
+    const { collapsedNodeIds } = get();
+    const newCollapsedIds = new Set(collapsedNodeIds);
+    if (newCollapsedIds.has(nodeId)) {
+      newCollapsedIds.delete(nodeId);
+    } else {
+      newCollapsedIds.add(nodeId);
+    }
+    set({ collapsedNodeIds: newCollapsedIds });
+  },
+  expandAll: () => {
+    set({ collapsedNodeIds: new Set() });
+  },
+  collapseAll: () => {
+    const { nodes } = get();
+    const collapsedNodeIds = new Set<string>();
+    
+    nodes.forEach(node => {
+      node.text.forEach((row, index) => {
+        if (row.to && row.to.length > 0) {
+          collapsedNodeIds.add(`${node.id}-row-${index}`);
+        }
+      });
+    });
+    
+    set({ collapsedNodeIds });
+  },
+  getFilteredGraph: () => {
+    const { nodes, edges, collapsedNodeIds } = get();
+    const hiddenNodeIds = new Set<string>();
+
+    // Build a map of row collapse IDs to their child node IDs
+    const rowChildMap = new Map<string, string[]>();
+    nodes.forEach(node => {
+      node.text.forEach((row, index) => {
+        if (row.to && row.to.length > 0) {
+          rowChildMap.set(`${node.id}-row-${index}`, row.to);
+        }
+      });
+    });
+
+    // Recursively mark nodes as hidden
+    const markHiddenNodes = (nodeId: string) => {
+      hiddenNodeIds.add(nodeId);
+      const node = nodes.find(n => n.id === nodeId);
+      if (node) {
+        node.text.forEach((row, index) => {
+          if (row.to && row.to.length > 0) {
+            row.to.forEach(childId => {
+              markHiddenNodes(childId);
+            });
+          }
+        });
+      }
+    };
+
+    // For each collapsed row, hide its direct children and their descendants
+    collapsedNodeIds.forEach(collapseId => {
+      const childIds = rowChildMap.get(collapseId);
+      if (childIds) {
+        childIds.forEach(childId => {
+          markHiddenNodes(childId);
+        });
+      }
+    });
+
+    // Filter out hidden nodes
+    const filteredNodes = nodes.filter(node => !hiddenNodeIds.has(node.id));
+
+    // Filter out edges to hidden nodes
+    const filteredEdges = edges.filter(edge => !hiddenNodeIds.has(edge.to));
+
+    return { nodes: filteredNodes, edges: filteredEdges };
+  },
 }));
 
 export default useGraph;

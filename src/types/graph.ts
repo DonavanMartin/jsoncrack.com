@@ -14,6 +14,8 @@ export interface NodeData {
   width: number;
   height: number;
   path?: JSONPath;
+  childNodeIds?: string[];
+  isCollapsed?: boolean;
 }
 
 export interface EdgeData {

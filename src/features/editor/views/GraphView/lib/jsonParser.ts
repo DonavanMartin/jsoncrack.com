@@ -18,12 +18,14 @@ export const parser = (json: string): Graph => {
 
   const nodes: NodeData[] = [];
   const edges: EdgeData[] = [];
+  const childNodeMap = new Map<string, string[]>(); // Track parent-child relationships
   let nodeId = 1;
   let edgeId = 1;
 
   function traverse(node: Node, parentId?: string) {
     const id = String(nodeId++);
     const text: NodeRow[] = [];
+    const currentNodeChildren: string[] = [];
 
     // If parentId is provided, create an edge from parentId to the current node id
     if (parentId !== undefined && node.parent?.type === "array") {
@@ -33,12 +35,21 @@ export const parser = (json: string): Graph => {
         to: id,
         text: "",
       });
+      if (!childNodeMap.has(parentId)) childNodeMap.set(parentId, []);
+      childNodeMap.get(parentId)!.push(id);
     }
 
     const isArray = node.type === "array";
     const isRootArray = !node.parent || node.parent.type === "array";
     if (isArray && isRootArray) {
       const { width, height } = calculateNodeSize(`[${node.children?.length ?? "0"} items]`);
+      const childIds: string[] = [];
+
+      node.children?.forEach(child => {
+        const childId = traverse(child, id);
+        if (childId) childIds.push(childId);
+      });
+
       nodes.push({
         id,
         text: [
@@ -52,10 +63,7 @@ export const parser = (json: string): Graph => {
         width,
         height,
         path: [],
-      });
-
-      node.children?.forEach(child => {
-        traverse(child, id);
+        childNodeIds: childIds,
       });
 
       return id;
@@ -91,6 +99,9 @@ export const parser = (json: string): Graph => {
             to: targetId,
             text: key ?? null,
           });
+          if (!childNodeMap.has(id)) childNodeMap.set(id, []);
+          childNodeMap.get(id)!.push(targetId);
+          currentNodeChildren.push(targetId);
         });
       } else if (type === "object") {
         const objectNodeId = traverse(valueNode, id);
@@ -109,6 +120,9 @@ export const parser = (json: string): Graph => {
             to: objectNodeId,
             text: key ?? null,
           });
+          if (!childNodeMap.has(id)) childNodeMap.set(id, []);
+          childNodeMap.get(id)!.push(objectNodeId);
+          currentNodeChildren.push(objectNodeId);
         }
       } else {
         text.push({
@@ -171,6 +185,7 @@ export const parser = (json: string): Graph => {
         height,
         path: getNodePath(node),
         ...appendParentKey(),
+        childNodeIds: currentNodeChildren,
       });
     } else {
       let t: string | [string, string][] = "";
@@ -196,6 +211,7 @@ export const parser = (json: string): Graph => {
         height,
         path: getNodePath(node),
         ...appendParentKey(),
+        childNodeIds: currentNodeChildren,
       });
     }
 
