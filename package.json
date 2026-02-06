@@ -2,6 +2,7 @@
   "name": "json-crack",
   "private": true,
   "version": "0.0.0",
+  "description": "Seamlessly visualize your JSON data instantly into graphs",
   "author": {
     "name": "Aykut Saraç",
     "email": "aykutsarac0@gmail.com"
@@ -11,6 +12,7 @@
   "bugs": {
     "url": "https://github.com/AykutSarac/jsoncrack.com/issues"
   },
+  "main": "electron/main.js",
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
@@ -18,7 +20,13 @@
     "start": "next start",
     "lint": "tsc --project tsconfig.json && eslint src && prettier --check src",
     "lint:fix": "eslint --fix src & prettier --write src",
-    "analyze": "ANALYZE=true npm run build"
+    "analyze": "ANALYZE=true npm run build",
+    "electron:dev": "pnpm run build && electron .",
+    "electron:build": "pnpm run build && electron-builder",
+    "electron:build:win": "pnpm run build && electron-builder --win",
+    "electron:build:mac": "pnpm run build && electron-builder --mac",
+    "electron:build:linux": "pnpm run build && electron-builder --linux",
+    "electron:build:all": "pnpm run build && electron-builder --win --linux"
   },
   "dependencies": {
     "@mantine/code-highlight": "^8.3.14",
@@ -63,6 +71,8 @@
     "@types/react": "19.2.11",
     "@types/react-dom": "19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.54.0",
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8",
     "eslint": "^9.39.2",
     "eslint-config-next": "16.1.6",
     "eslint-config-prettier": "^10.1.8",
