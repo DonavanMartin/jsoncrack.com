@@ -1,3 +1,20 @@
+<!-- FORK NOTICE -->
+> **🍴 This is a fork of [AykutSarac/jsoncrack.com](https://github.com/AykutSarac/jsoncrack.com)**
+>
+> ### Fork Features
+>
+> **🖥️ Electron Desktop App Support**
+> - Run JSON Crack as a standalone desktop app on macOS, Windows, and Linux
+>
+> **🔄 Collapse/Expand Functionality for Graph Nodes**
+> - Circular +/- toggle buttons on rows with nested children (objects/arrays)
+> - Per-row collapse tracking for granular control
+> - "Expand All" and "Collapse All" options in the hamburger menu
+> - Clean graph rendering with automatic edge filtering for hidden nodes
+> - Styled to match [todiagram.com](https://todiagram.com) design
+
+---
+
 <!-- PROJECT LOGO -->
 <p align="center">
   <a href="https://github.com/AykutSarac/jsoncrack.com">
@@ -126,6 +143,27 @@ docker compose up
 
 # Go to http://localhost:8888
 ```
+
+### Desktop App (Electron)
+
+🖥️ This fork includes Electron support for building standalone desktop applications.
+
+**Build the desktop app:**
+
+```sh
+# Build the Next.js static export
+pnpm build
+
+# Build for your current platform
+pnpm electron:build
+```
+
+**Supported platforms:**
+- **macOS**: Builds a `.zip` archive (x64 and arm64)
+- **Windows**: Builds a portable `.exe` (x64)
+- **Linux**: Builds an `.AppImage` (x64)
+
+The built applications will be output to the `dist-electron/` directory.
 
 ## Configuration
 
