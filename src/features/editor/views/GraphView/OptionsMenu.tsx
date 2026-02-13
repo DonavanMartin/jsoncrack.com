@@ -4,7 +4,13 @@ import { useHotkeys } from "@mantine/hooks";
 import styled from "styled-components";
 import { event as gaEvent } from "nextjs-google-analytics";
 import { BsCheck2 } from "react-icons/bs";
-import { LuChevronRight, LuImageDown, LuMenu, LuUnfoldVertical, LuFoldVertical } from "react-icons/lu";
+import {
+  LuChevronRight,
+  LuImageDown,
+  LuMenu,
+  LuUnfoldVertical,
+  LuFoldVertical,
+} from "react-icons/lu";
 import { TiFlowMerge } from "react-icons/ti";
 import useConfig from "../../../../store/useConfig";
 import { useModal } from "../../../../store/useModal";

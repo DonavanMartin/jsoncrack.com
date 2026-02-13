@@ -124,7 +124,7 @@ const useGraph = create<Graph & GraphActions>((set, get) => ({
   collapseAll: () => {
     const { nodes } = get();
     const collapsedNodeIds = new Set<string>();
-    
+
     nodes.forEach(node => {
       node.text.forEach((row, index) => {
         if (row.to && row.to.length > 0) {
@@ -132,7 +132,7 @@ const useGraph = create<Graph & GraphActions>((set, get) => ({
         }
       });
     });
-    
+
     set({ collapsedNodeIds });
   },
   getFilteredGraph: () => {

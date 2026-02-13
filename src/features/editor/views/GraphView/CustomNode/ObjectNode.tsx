@@ -4,8 +4,8 @@ import type { CustomNodeProps } from ".";
 import { NODE_DIMENSIONS } from "../../../../../constants/graph";
 import type { NodeData } from "../../../../../types/graph";
 import useGraph from "../stores/useGraph";
-import { TextRenderer } from "./TextRenderer";
 import { ExpandCollapseButton } from "./ExpandCollapseButton";
+import { TextRenderer } from "./TextRenderer";
 import * as Styled from "./styles";
 
 const StyledRowWrapper = styled.div`
@@ -64,7 +64,12 @@ const Row = ({ row, x, y, index, collapseId, isCollapsed }: RowProps) => {
         </StyledRowContent>
         {hasChildren && (
           <StyledCollapseButtonWrapper>
-            <ExpandCollapseButton collapseId={collapseId} isCollapsed={isCollapsed} hasChildren={true} childNodeIds={row.to} />
+            <ExpandCollapseButton
+              collapseId={collapseId}
+              isCollapsed={isCollapsed}
+              hasChildren={true}
+              childNodeIds={row.to}
+            />
           </StyledCollapseButtonWrapper>
         )}
       </StyledRowWrapper>

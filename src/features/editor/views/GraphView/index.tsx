@@ -91,7 +91,10 @@ const GraphCanvas = ({ isWidget }: GraphProps) => {
   const [paneHeight, setPaneHeight] = React.useState(2000);
 
   // Get filtered nodes and edges based on collapsed state
-  const { nodes, edges } = React.useMemo(() => getFilteredGraph(), [getFilteredGraph, collapsedNodeIds]);
+  const { nodes, edges } = React.useMemo(
+    () => getFilteredGraph(),
+    [getFilteredGraph, collapsedNodeIds]
+  );
 
   const onLayoutChange = React.useCallback(
     (layout: ElkRoot) => {

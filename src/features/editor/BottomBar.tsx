@@ -2,7 +2,6 @@ import React from "react";
 import { Flex, Menu, Popover, Text } from "@mantine/core";
 import styled from "styled-components";
 import { event as gaEvent } from "nextjs-google-analytics";
-import { BiSolidDockLeft } from "react-icons/bi";
 import { IoMdCheckmark } from "react-icons/io";
 import { MdArrowUpward } from "react-icons/md";
 import { VscCheck, VscError, VscRunAll, VscSync, VscSyncIgnored } from "react-icons/vsc";
@@ -80,15 +79,8 @@ export const BottomBar = () => {
   const liveTransformEnabled = useConfig(state => state.liveTransformEnabled);
   const error = useFile(state => state.error);
   const setContents = useFile(state => state.setContents);
-  const toggleFullscreen = useGraph(state => state.toggleFullscreen);
-  const fullscreen = useGraph(state => state.fullscreen);
   const setFormat = useFile(state => state.setFormat);
   const currentFormat = useFile(state => state.format);
-
-  const toggleEditor = () => {
-    toggleFullscreen(!fullscreen);
-    gaEvent("toggle_fullscreen");
-  };
 
   React.useEffect(() => {
     if (data?.name) window.document.title = `${data.name} | JSON Crack`;
@@ -97,9 +89,6 @@ export const BottomBar = () => {
   return (
     <StyledBottomBar>
       <StyledLeft>
-        <StyledBottomBarItem onClick={toggleEditor}>
-          <BiSolidDockLeft />
-        </StyledBottomBarItem>
         <StyledBottomBarItem>
           {error ? (
             <Popover width="auto" shadow="md" position="top" withArrow>

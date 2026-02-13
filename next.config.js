@@ -9,6 +9,7 @@ const config = {
   output: "export",
   reactStrictMode: false,
   productionBrowserSourceMaps: true,
+  devIndicators: false,
   compiler: {
     styledComponents: true,
   },

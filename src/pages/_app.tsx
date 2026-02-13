@@ -9,7 +9,6 @@ import "@mantine/code-highlight/styles.css";
 import { ThemeProvider } from "styled-components";
 import { SoftwareApplicationJsonLd } from "next-seo";
 import { generateDefaultSeo } from "next-seo/pages";
-import { GoogleAnalytics } from "nextjs-google-analytics";
 import { Toaster } from "react-hot-toast";
 import GlobalStyle from "../constants/globalStyle";
 import { SEO } from "../constants/seo";
@@ -111,7 +110,7 @@ function JsonCrack({ Component, pageProps }: AppProps) {
               }}
             />
             <GlobalStyle />
-            {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && <GoogleAnalytics trackPageViews />}
+            {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID }
             <Component {...pageProps} />
           </ThemeProvider>
         </CodeHighlightAdapterProvider>
