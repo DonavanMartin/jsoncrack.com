@@ -52,8 +52,6 @@ export default function EditorPage() {
 
       <ThemeProvider theme={theme}>
         <StyledPageWrapper>
-          {/* Optional existing banner */}
-          <Banner />
 
           {/* NEW: Allotment with Multi-JSON Workspace */}
           <Allotment>

@@ -10,7 +10,6 @@ import "allotment/dist/style.css";
 import { generateNextSeo } from "next-seo/pages";
 import { SEO } from "../constants/seo";
 import { darkTheme, lightTheme } from "../constants/theme";
-import { Banner } from "../features/Banner";
 import { BottomBar } from "../features/editor/BottomBar";
 import { FullscreenDropzone } from "../features/editor/FullscreenDropzone";
 import { Toolbar } from "../features/editor/Toolbar";
@@ -54,6 +53,8 @@ export const StyledEditorWrapper = styled.div`
 export const StyledEditor = styled(Allotment)`
   position: relative !important;
   display: flex;
+  width: 100%;
+  height: 100%;
   background: ${({ theme }) => theme.BACKGROUND_SECONDARY};
 
   @media only screen and (max-width: 320px) {
@@ -64,8 +65,10 @@ export const StyledEditor = styled(Allotment)`
 const StyledTextEditor = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 `;
 
 const TextEditor = dynamic(() => import("../features/editor/TextEditor"), {
@@ -116,7 +119,6 @@ const EditorPage = () => {
         <ModalController />
         <StyledEditorWrapper>
           <StyledPageWrapper>
-            {process.env.NEXT_PUBLIC_DISABLE_EXTERNAL_MODE === "true" ? null : <Banner />}
             <Toolbar />
             <StyledEditorWrapper>
               <MainEditorContainer>
@@ -126,39 +128,39 @@ const EditorPage = () => {
                   fullscreen={fullscreen}
                   onToggleFullscreen={() => toggleFullscreen(!fullscreen)}
                 />
-                <StyledEditor proportionalLayout={false}>
+                <StyledEditor proportionalLayout={true}>
                   {/* Panneau gauche: Sidebar with active panel */}
-                  <Allotment.Pane
-                    preferredSize={280}
-                    minSize={200}
-                    maxSize={500}
-                    visible={!fullscreen && (activePanel === "json-library" || activePanel === "preferences")}
-                  >
-                    {activePanel === "json-library" && (
-                      <JSONLibraryPanel 
-                        onAddJSON={() => setImportModalOpen(true)}
-                        onCollapse={() => setActivePanel(null)}
-                      />
-                    )}
-                    {activePanel === "preferences" && (
-                      <PreferencesPanel 
-                        onCollapse={() => setActivePanel(null)}
-                      />
-                    )}
-                  </Allotment.Pane>
+                  {!fullscreen && (activePanel === "json-library" || activePanel === "preferences") && (
+                    <Allotment.Pane
+                      preferredSize={280}
+                      minSize={200}
+                      maxSize={500}
+                    >
+                      {activePanel === "json-library" && (
+                        <JSONLibraryPanel 
+                          onAddJSON={() => setImportModalOpen(true)}
+                          onCollapse={() => setActivePanel(null)}
+                        />
+                      )}
+                      {activePanel === "preferences" && (
+                        <PreferencesPanel 
+                          onCollapse={() => setActivePanel(null)}
+                        />
+                      )}
+                    </Allotment.Pane>
+                  )}
 
                   {/* Panneau milieu: Text Editor */}
-                  <Allotment.Pane
-                    preferredSize={450}
-                    minSize={fullscreen ? 0 : 300}
-                    maxSize={800}
-                    visible={!fullscreen}
-                  >
-                    <StyledTextEditor>
-                      <TextEditor />
-                      <BottomBar />
-                    </StyledTextEditor>
-                  </Allotment.Pane>
+                  {!fullscreen && (
+                    <Allotment.Pane
+                      minSize={300}
+                    >
+                      <StyledTextEditor>
+                        <TextEditor />
+                        <BottomBar />
+                      </StyledTextEditor>
+                    </Allotment.Pane>
+                  )}
 
                   {/* Panneau droit: Live Editor/Graph */}
                   <Allotment.Pane minSize={0}>

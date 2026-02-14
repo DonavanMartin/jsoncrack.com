@@ -11,7 +11,7 @@
 > - Per-row collapse tracking for granular control
 > - "Expand All" and "Collapse All" options in the hamburger menu
 > - Clean graph rendering with automatic edge filtering for hidden nodes
-> - Styled to match [todiagram.com](https://todiagram.com) design
+> - Modern, intuitive user interface
 
 ---
 
@@ -29,8 +29,6 @@
     <a href="https://jsoncrack.com"><strong>Learn more »</strong></a>
     <br />
     <br />
-    <a href="https://todiagram.com">ToDiagram</a>
-    ·
     <a href="https://discord.gg/yVyTtCRueq">Discord</a>
     ·
     <a href="https://jsoncrack.com">Website</a>

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef, useEffect } from "react";
 import { LoadingOverlay } from "@mantine/core";
 import styled from "styled-components";
 import Editor, { type EditorProps, loader, type OnMount, useMonaco } from "@monaco-editor/react";
@@ -23,6 +23,7 @@ const editorOptions: EditorProps["options"] = {
 
 const TextEditor = () => {
   const monaco = useMonaco();
+  const editorRef = useRef<any>(null);
   const contents = useFile(state => state.contents);
   const setContents = useFile(state => state.setContents);
   const setError = useFile(state => state.setError);
@@ -66,14 +67,33 @@ const TextEditor = () => {
     };
   }, [getHasChanges]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (editorRef.current) {
+        editorRef.current.layout();
+      }
+    };
+
+    const resizeObserver = new ResizeObserver(handleResize);
+    const wrapper = document.querySelector('[data-editor-wrapper]');
+    if (wrapper) {
+      resizeObserver.observe(wrapper);
+    }
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
+
   const handleMount: OnMount = useCallback(editor => {
+    editorRef.current = editor;
     editor.onDidPaste(() => {
       editor.getAction("editor.action.formatDocument")?.run();
     });
   }, []);
 
   return (
-    <StyledEditorWrapper>
+    <StyledEditorWrapper data-editor-wrapper>
       <StyledWrapper>
         <Editor
           height="100%"
