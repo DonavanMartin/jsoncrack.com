@@ -6,30 +6,30 @@
 ┌─────────────────────────────────────────────────────────────────┐
 │                     USER INTERFACE LAYER                        │
 ├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐          │
-│  │   Import     │  │  Library     │  │  Optimizer   │          │
-│  │   Modal      │  │   Panel      │  │   Panel      │          │
-│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘          │
+│                                                                 │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐           │
+│  │   Import     │  │  Library     │  │  Optimizer   │           │
+│  │   Modal      │  │   Panel      │  │   Panel      │           │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘           │
 │         │                 │                 │                   │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐          │
-│  │ Relations    │  │ Comparisons  │  │  Dashboard   │          │
-│  │ Panel        │  │  View        │  │              │          │
-│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘          │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐           │
+│  │ Relations    │  │ Comparisons  │  │  Dashboard   │           │
+│  │ Panel        │  │  View        │  │              │           │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘           │
 │         │                 │                 │                   │
-└─────────┼─────────────────┼─────────────────┼──────────────────┘
+└─────────┼─────────────────┼─────────────────┼───────────────────┘
           │                 │                 │
           ▼                 ▼                 ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                    COMPONENT LAYER                              │
 ├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │         MultiJSONWorkspace (Main Container)             │  │
-│  │  - Tabs orchestration                                   │  │
-│  │  - State synchronization                                │  │
-│  │  - Event handling                                       │  │
-│  └──────────────────────────────────────────────────────────┘  │
+│                                                                 │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │         MultiJSONWorkspace (Main Container)              │   │
+│  │  - Tabs orchestration                                    │   │
+│  │  - State synchronization                                 │   │
+│  │  - Event handling                                        │   │
+│  └──────────────────────────────────────────────────────────┘   │
 │                            │                                    │
 └────────────────────────────┼────────────────────────────────────┘
                              │
@@ -37,43 +37,43 @@
 ┌─────────────────────────────────────────────────────────────────┐
 │                    STATE MANAGEMENT LAYER (ZUSTAND)             │
 ├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  ┌─────────────────────┐   ┌─────────────────────┐             │
-│  │  useJSONLibrary     │   │  useJSONAnalyzer    │             │
-│  │                     │   │                     │             │
-│  │ • addJSON()         │   │ • analyzeSchema()   │             │
+│                                                                 │
+│  ┌─────────────────────┐   ┌─────────────────────┐              │
+│  │  useJSONLibrary     │   │  useJSONAnalyzer    │              │
+│  │                     │   │                     │              │
+│  │ • addJSON()         │   │ • analyzeSchema()   │              │
 │  │ • getJSON()         │   │ • detectRelations()  │             │
-│  │ • selectJSON()      │   │ • compareSchemas() │             │
+│  │ • selectJSON()      │   │ • compareSchemas() │               │
 │  │ • addRelation()     │   │ • suggestions()      │             │
 │  │ • searchByName()    │   │ • findSimilar()      │             │
 │  │ • getByType()       │   │ • calculateImpact()  │             │
-│  │ • persistence       │   │ • persistence       │             │
-│  └──────┬──────────────┘   └──────┬──────────────┘             │
+│  │ • persistence       │   │ • persistence       │              │
+│  └──────┬──────────────┘   └──────┬──────────────┘              │
 │         │                         │                             │
-│  ┌──────────────────────────────────────────┐                  │
-│  │      useMultiJSON (Orchestrator)         │                  │
-│  │                                          │                  │
-│  │ • createComparison()                     │                  │
-│  │ • getLibraryStats()                      │                  │
-│  │ • syncAnalyses()                         │                  │
-│  │ • addToHistory()                         │                  │
-│  │ • getComparisons()                       │                  │
-│  └──────────────────────────────────────────┘                  │
-│                             │                                    │
-└─────────────────────────────┼────────────────────────────────────┘
+│  ┌──────────────────────────────────────────┐                   │
+│  │      useMultiJSON (Orchestrator)         │                   │
+│  │                                          │                   │
+│  │ • createComparison()                     │                   │
+│  │ • getLibraryStats()                      │                   │
+│  │ • syncAnalyses()                         │                   │
+│  │ • addToHistory()                         │                   │
+│  │ • getComparisons()                       │                   │
+│  └──────────────────────────────────────────┘                   │
+│                             │                                   │
+└─────────────────────────────┼───────────────────────────────────┘
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                    PERSISTENCE LAYER                            │
 ├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │               localStorage / IndexedDB                   │  │
-│  │  • json-library (JSON metadata)                          │  │
-│  │  • Limit: ~5-10MB (localStorage)                         │  │
-│  │  • Expandable to 50MB+ (IndexedDB)                       │  │
-│  └──────────────────────────────────────────────────────────┘  │
-│                                                                  │
+│                                                                 │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │               localStorage / IndexedDB                   │   │
+│  │  • json-library (JSON metadata)                          │   │
+│  │  • Limit: ~5-10MB (localStorage)                         │   │
+│  │  • Expandable to 50MB+ (IndexedDB)                       │   │
+│  └──────────────────────────────────────────────────────────┘   │
+│                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 
 
@@ -81,9 +81,9 @@
 
 
 ┌────────────────────────────────────────────────────────────────┐
-│                   useJSONLibrary Store                          │
+│                   useJSONLibrary Store                         │
 ├────────────────────────────────────────────────────────────────┤
-│                                                                 │
+│                                                                │
 │  jsonLibrary: Map<id, JSONMetadata>                            │
 │  ├─ id: unique identifier                                      │
 │  ├─ name: display name                                         │
@@ -94,30 +94,30 @@
 │  ├─ updatedAt: timestamp                                       │
 │  ├─ relatedIds: string[] (linked JSON)                         │
 │  └─ tags: string[]                                             │
-│                                                                 │
+│                                                                │
 │  selectedId: string | null (currently selected JSON)           │
-│                                                                 │
+│                                                                │
 │  Methods:                                                      │
-│  • addJSON, updateJSON, deleteJSON                            │
-│  • getJSON, getAllJSON                                        │
-│  • addRelation, removeRelation, getRelations                  │
-│  • searchByName, getByType                                    │
-│  • selectJSON, getSelectedId                                  │
+│  • addJSON, updateJSON, deleteJSON                             │
+│  • getJSON, getAllJSON                                         │
+│  • addRelation, removeRelation, getRelations                   │
+│  • searchByName, getByType                                     │
+│  • selectJSON, getSelectedId                                   │
 │  • clear                                                       │
-│                                                                 │
-│  Persistence: localStorage (key: "json-library")              │
+│                                                                │
+│  Persistence: localStorage (key: "json-library")               │
 └────────────────────────────────────────────────────────────────┘
 
 
 ┌────────────────────────────────────────────────────────────────┐
-│                  useJSONAnalyzer Store                          │
+│                  useJSONAnalyzer Store                         │
 ├────────────────────────────────────────────────────────────────┤
-│                                                                 │
+│                                                                │
 │  schemas: Map<id, JSONSchema>                                  │
 │  ├─ id: unique schema ID                                       │
 │  ├─ sourceJsonId: which JSON was analyzed                      │
 │  ├─ root: SchemaNode (recursive structure)                     │
-│  │  ├─ type: "object"|"array"|"string"|...                    │
+│  │  ├─ type: "object"|"array"|"string"|...                     │
 │  │  ├─ occurrences: count                                      │
 │  │  ├─ frequency: 0-1                                          │
 │  │  ├─ samples?: example values                                │
@@ -125,44 +125,44 @@
 │  │  └─ itemType?: SchemaNode (for arrays)                      │
 │  ├─ hash: for fast comparison                                  │
 │  └─ complexity: 0-100 score                                    │
-│                                                                 │
+│                                                                │
 │  relationships: Map<jsonId, Relationship[]>                    │
-│  ├─ sourceId, targetId                                        │
-│  ├─ type: "reference"|"schema-match"|"common-field"           │
+│  ├─ sourceId, targetId                                         │
+│  ├─ type: "reference"|"schema-match"|"common-field"            │
 │  └─ confidence: 0-1                                            │
-│                                                                 │
+│                                                                │
 │  optimizations: Map<jsonId, OptimizationSuggestion[]>          │
-│  ├─ id, type, severity                                        │
-│  ├─ description, impact                                       │
-│  ├─ estimatedSavings                                          │
-│  └─ affectedPaths                                             │
-│                                                                 │
+│  ├─ id, type, severity                                         │
+│  ├─ description, impact                                        │
+│  ├─ estimatedSavings                                           │
+│  └─ affectedPaths                                              │
+│                                                                │
 │  Methods:                                                      │
-│  • analyzeSchema, getSchema, getAllSchemas                    │
-│  • detectRelationships, getRelationships                      │
-│  • suggestOptimizations, getAllOptimizations                  │
-│  • compareSchemas, findSimilarSchemas                         │
+│  • analyzeSchema, getSchema, getAllSchemas                     │
+│  • detectRelationships, getRelationships                       │
+│  • suggestOptimizations, getAllOptimizations                   │
+│  • compareSchemas, findSimilarSchemas                          │
 │  • clear                                                       │
-│                                                                 │
+│                                                                │
 │  No persistence (computed on demand)                           │
 └────────────────────────────────────────────────────────────────┘
 
 
 ┌────────────────────────────────────────────────────────────────┐
-│                    useMultiJSON Store                           │
+│                    useMultiJSON Store                          │
 ├────────────────────────────────────────────────────────────────┤
-│                                                                 │
+│                                                                │
 │  comparisons: Map<id, ComparisonView>                          │
 │  ├─ id, jsonId1, jsonId2                                       │
 │  ├─ similarityScore: 0-1                                       │
 │  ├─ commonFields: string[]                                     │
 │  └─ differencesCount: number                                   │
-│                                                                 │
+│                                                                │
 │  navigationHistory: NavigationHistory[]                        │
-│  ├─ jsonId, timestamp                                         │
-│  └─ action: "opened"|"modified"|"analyzed"                    │
+│  ├─ jsonId, timestamp                                          │
+│  └─ action: "opened"|"modified"|"analyzed"                     │
 │  (kept at 100 items max)                                       │
-│                                                                 │
+│                                                                │
 │  Methods:                                                      │
 │  • createComparison                                            │
 │  • getComparisons                                              │
@@ -170,7 +170,7 @@
 │  • getLibraryStats (aggregate)                                 │
 │  • syncAnalyses (trigger all analyses)                         │
 │  • clear                                                       │
-│                                                                 │
+│                                                                │
 │  No persistence (ephemeral)                                    │
 └────────────────────────────────────────────────────────────────┘
 
@@ -194,7 +194,7 @@
                         ┌───────────┴───────────┬─────────────────┐
                         │                       │                 │
                       type                 children        itemType (arrays)
-                        │                   (objects)              │
+                        │                   (objects)             │
             ┌───────────┴──────────┐                              │
            │                       │                              │
         object              array/string/                    SchemaNode
@@ -221,35 +221,35 @@
 │                  MultiJSONWorkspace                         │
 │  (Main container with Tabs)                                 │
 ├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│  ┌──────────────────┐  ┌──────────────────┐               │
-│  │  Tab: Library    │  │  Tab: Optim      │               │
-│  │  ┌────────────┐  │  │  ┌────────────┐  │               │
-│  │  │ JSONLibrary    │  │  │ Optimizations │               │
-│  │  │  Panel    │  │  │  │ Panel      │  │               │
-│  │  └────────────┘  │  │  └────────────┘  │               │
-│  └──────────────────┘  └──────────────────┘               │
-│                                                              │
-│  ┌──────────────────┐  ┌──────────────────┐               │
-│  │  Tab: Relations  │  │  Tab: Comparisons│               │
-│  │  ┌────────────┐  │  │  ┌────────────┐  │               │
-│  │  │ Relations     │  │  │ Comparisons  │               │
-│  │  │ Panel     │  │  │  │ View       │  │               │
-│  │  └────────────┘  │  │  └────────────┘  │               │
-│  └──────────────────┘  └──────────────────┘               │
-│                                                              │
-│  Plus Modal:                                               │
-│  ┌──────────────────────────────────────┐                 │
-│  │   MultiJSONImportModal               │                 │
-│  │   (Triggered by Import Button)       │                 │
-│  └──────────────────────────────────────┘                 │
-│                                                              │
-│  Plus Dashboard (optional separate page):                  │
-│  ┌──────────────────────────────────────┐                 │
-│  │   JSONAnalyzerDashboard              │                 │
-│  │   (Comprehensive statistics)         │                 │
-│  └──────────────────────────────────────┘                 │
-│                                                              │
+│                                                             │
+│  ┌──────────────────┐  ┌──────────────────┐                 │
+│  │  Tab: Library    │  │  Tab: Optim      │                 │
+│  │  ┌────────────┐  │  │  ┌────────────┐  │                 │
+│  │  │ JSONLibrary|  │  │  │ Optimizations │                 │
+│  │  │  Panel     │  │  │  │ Panel      │  │                 │
+│  │  └────────────┘  │  │  └────────────┘  │                 │
+│  └──────────────────┘  └──────────────────┘                 │
+│                                                             │
+│  ┌──────────────────┐  ┌──────────────────┐                 │
+│  │  Tab: Relations  │  │  Tab: Comparisons│                 │
+│  │  ┌────────────┐  │  │  ┌────────────┐  │                 │
+│  │  │ Relations  |  │  │  │ Comparisons|  |                 │
+│  │  │ Panel      │  │  │  │ View       │  │                 │
+│  │  └────────────┘  │  │  └────────────┘  │                 │
+│  └──────────────────┘  └──────────────────┘                 │
+│                                                             │
+│  Plus Modal:                                                │
+│  ┌──────────────────────────────────────┐                   │
+│  │   MultiJSONImportModal               │                   │
+│  │   (Triggered by Import Button)       │                   │
+│  └──────────────────────────────────────┘                   │
+│                                                             │
+│  Plus Dashboard (optional separate page):                   │
+│  ┌──────────────────────────────────────┐                   │
+│  │   JSONAnalyzerDashboard              │                   │
+│  │   (Comprehensive statistics)         │                   │
+│  └──────────────────────────────────────┘                   │
+│                                                             │
 └─────────────────────────────────────────────────────────────┘
 
 
@@ -349,15 +349,15 @@ src/
    │ (No new deps!)
    │
 ┌──┴────────────────────────────┐
-│  Existing Dependencies:        │
-│  • zustand (already installed) │
-│  • @mantine/core               │
-│  • @mantine/dropzone           │
-│  • react-icons                 │
-│  • styled-components           │
-│  • allotment                   │
-│  • react / next                │
-└────────────────────────────────┘
+│  Existing Dependencies:       │
+│  • zustand (already installed)│
+│  • @mantine/core              │
+│  • @mantine/dropzone          │
+│  • react-icons                │
+│  • styled-components          │
+│  • allotment                  │
+│  • react / next               │
+└───────────────────────────────┘
 ```
 
 **ZERO additional dependencies required!** ✅

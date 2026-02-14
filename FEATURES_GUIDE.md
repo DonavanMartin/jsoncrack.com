@@ -277,9 +277,9 @@ type Role = "admin" | "user";
 │ - Filter     │                  │
 │ - Search     │                  │
 │              │                  │
-│ + Optimisations (onglet 2)  │
-│ + Relations (onglet 3)      │
-│ + Comparaisons (onglet 4)   │
+│ + Optimisations (onglet 2)      │
+│ + Relations (onglet 3)          │
+│ + Comparaisons (onglet 4)       │
 └──────────────┴──────────────────┘
 ```
 
