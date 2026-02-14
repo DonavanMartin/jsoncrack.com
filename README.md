@@ -127,26 +127,33 @@ Here is what you need to be able to run JSON Crack.
    # Running on http://localhost:3000/
    ```
 
-### Docker
-
-🐳 A [`Dockerfile`](Dockerfile) is provided in the root of the repository.
-If you want to run JSON Crack locally:
-
-```console
-# Build a Docker image with:
-docker compose build
-
-# Run locally with `docker-compose`
-docker compose up
-
-# Go to http://localhost:8888
-```
-
 ### Desktop App (Electron)
 
-🖥️ This fork includes Electron support for building standalone desktop applications.
+🖥️ This project includes Electron support for building standalone desktop applications.
 
 **Build the desktop app:**
+
+```console
+# Development mode:
+pnpm electron:dev
+
+# Build for all platforms:
+pnpm electron:build:all
+
+# Build for specific platform:
+pnpm electron:build:mac    # macOS
+pnpm electron:build:win    # Windows
+pnpm electron:build:linux  # Linux
+```
+
+**Available builds:**
+- macOS (.dmg, .app)
+- Windows (.exe)
+- Linux (.AppImage, .deb)
+
+The built applications will be available in the `dist-electron/` directory.
+
+### Web App
 
 ```sh
 # Build the Next.js static export
