@@ -2,7 +2,7 @@
   "Introduction": [
     "Subject to these Terms of Service (“Terms”, “Terms of Service”), jsoncrack.com ('JSON Crack', 'we', 'us' and/or 'our') provides access to JSON Crack's application as a service (collectively, the 'Services'). By using or accessing the Services, you acknowledge that you have read, understand, and agree to be bound by this Agreement.",
     "These Terms of Service govern your use of our web pages located at https://jsoncrack.com.",
-    "Our Privacy Policy also governs your use of our Service and explains how we collect, safeguard and disclose information that results from your use of our web pages. Please read it here https://jsoncrack.com/legal/privacy.",
+    "Our Privacy Policy also governs your use of our Service and explains our commitment to your privacy. We do not collect, store, or share any personal data. Please read it here https://jsoncrack.com/legal/privacy.",
     "Your agreement with us includes these Terms and our Privacy Policy (“Agreements”). You acknowledge that you have read and understood Agreements, and agree to be bound of them.",
     "If you do not agree with (or cannot comply with) Agreements, then you may not use the Service, but please let us know by emailing at contact@jsoncrack.com so we can try to find a solution. These Terms apply to all visitors, users and others who wish to access or use Service.",
     "Thank you for being responsible."
@@ -25,12 +25,7 @@
     "• Take any action that may damage or falsify Company rating.",
     "• Otherwise attempt to interfere with the proper working of Service."
   ],
-  "Analytics": [
-    "We may use third-party Service Providers to monitor and analyze the use of our Service.",
-    "Google Analytics is a web analytics service offered by Google that tracks and reports website traffic. Google uses the data collected to track and monitor the use of our Service. This data is shared with other Google services. Google may use the collected data to contextualise and personalise the ads of its own advertising network.",
-    "For more information on the privacy practices of Google, please visit the Google Privacy Terms web page: https://policies.google.com/privacy?hl=en",
-    "We also encourage you to review the Google's policy for safeguarding your data: https://support.google.com/analytics/answer/6004245"
-  ],
+  "Analytics": [],
   "Data Security": [
     "As we do not store any user data on our servers, we are not responsible for any data security risks that may occur when users store or process data locally on their devices."
   ],

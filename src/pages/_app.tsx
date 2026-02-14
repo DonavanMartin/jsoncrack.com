@@ -110,7 +110,6 @@ function JsonCrack({ Component, pageProps }: AppProps) {
               }}
             />
             <GlobalStyle />
-            {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID }
             <Component {...pageProps} />
           </ThemeProvider>
         </CodeHighlightAdapterProvider>

@@ -1,7 +1,6 @@
 import React from "react";
 import { ActionIcon, Flex, Tooltip, Text } from "@mantine/core";
 import { useHotkeys } from "@mantine/hooks";
-import { event as gaEvent } from "nextjs-google-analytics";
 import { LuFocus, LuMaximize, LuMinus, LuPlus } from "react-icons/lu";
 import { SearchInput } from "../../Toolbar/SearchInput";
 import useGraph from "./stores/useGraph";
@@ -52,7 +51,6 @@ export const ZoomControl = () => {
             color="gray"
             onClick={() => {
               focusFirstNode();
-              gaEvent("focus_first_node");
             }}
           >
             <LuFocus />
@@ -75,7 +73,6 @@ export const ZoomControl = () => {
             color="gray"
             onClick={() => {
               centerView();
-              gaEvent("center_view");
             }}
           >
             <LuMaximize />
@@ -87,7 +84,6 @@ export const ZoomControl = () => {
           color="gray"
           onClick={() => {
             zoomOut();
-            gaEvent("zoom_out");
           }}
         >
           <LuMinus />
@@ -98,7 +94,6 @@ export const ZoomControl = () => {
           color="gray"
           onClick={() => {
             zoomIn();
-            gaEvent("zoom_in");
           }}
         >
           <LuPlus />

@@ -2,7 +2,6 @@ import React from "react";
 import type { ModalProps } from "@mantine/core";
 import { Stack, Modal, Button, Text, Anchor, Group, Paper } from "@mantine/core";
 import Editor from "@monaco-editor/react";
-import { event as gaEvent } from "nextjs-google-analytics";
 import { toast } from "react-hot-toast";
 import { VscLinkExternal } from "react-icons/vsc";
 import useConfig from "../../../store/useConfig";
@@ -36,7 +35,6 @@ export const SchemaModal = ({ opened, onClose }: ModalProps) => {
       const parsedSchema = JSON.parse(schema);
       setJsonSchema(parsedSchema);
 
-      gaEvent("apply_json_schema");
       toast.success("Applied schema!");
       onClose();
     } catch {

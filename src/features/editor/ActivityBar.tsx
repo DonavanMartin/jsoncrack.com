@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { MdLibraryBooks, MdSearch, MdExtension, MdSettings } from "react-icons/md";
 import { BiSolidDockLeft } from "react-icons/bi";
 import { FiDownload, FiUpload } from "react-icons/fi";
-import { event as gaEvent } from "nextjs-google-analytics";
 import { useModal } from "../../store/useModal";
 import useFile from "../../store/useFile";
 
@@ -69,7 +68,6 @@ export const ActivityBar: React.FC<ActivityBarProps> = ({ activePanel, onSelectP
 
   const handleToggleFullscreen = () => {
     onToggleFullscreen?.();
-    gaEvent("toggle_fullscreen");
   };
 
   const handleExport = () => {
@@ -78,7 +76,6 @@ export const ActivityBar: React.FC<ActivityBarProps> = ({ activePanel, onSelectP
     a.href = window.URL.createObjectURL(file);
     a.download = `jsoncrack.${getFormat()}`;
     a.click();
-    gaEvent("save_file", { label: getFormat() });
   };
 
   return (
@@ -115,7 +112,6 @@ export const ActivityBar: React.FC<ActivityBarProps> = ({ activePanel, onSelectP
           isActive={false}
           onClick={() => {
             setVisible("ImportModal", true);
-            gaEvent("open_import_modal");
           }}
         >
           <FiUpload />

@@ -1,7 +1,6 @@
 import React from "react";
 import { Flex, Menu, Popover, Text } from "@mantine/core";
 import styled from "styled-components";
-import { event as gaEvent } from "nextjs-google-analytics";
 import { IoMdCheckmark } from "react-icons/io";
 import { MdArrowUpward } from "react-icons/md";
 import { VscCheck, VscError, VscRunAll, VscSync, VscSyncIgnored } from "react-icons/vsc";
@@ -114,7 +113,6 @@ export const BottomBar = () => {
         <StyledBottomBarItem
           onClick={() => {
             toggleLiveTransform(!liveTransformEnabled);
-            gaEvent("toggle_live_transform");
           }}
         >
           {liveTransformEnabled ? <VscSync /> : <VscSyncIgnored />}

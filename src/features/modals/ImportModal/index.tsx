@@ -2,7 +2,6 @@ import React from "react";
 import type { ModalProps } from "@mantine/core";
 import { Modal, Group, Button, TextInput, Stack, Paper, Text } from "@mantine/core";
 import { Dropzone } from "@mantine/dropzone";
-import { event as gaEvent } from "nextjs-google-analytics";
 import toast from "react-hot-toast";
 import { AiOutlineUpload } from "react-icons/ai";
 import type { FileFormat } from "../../../enums/file.enum";
@@ -20,7 +19,6 @@ export const ImportModal = ({ opened, onClose }: ModalProps) => {
       setFile(null);
 
       toast.loading("Loading...", { id: "toastFetch" });
-      gaEvent("fetch_url");
 
       return fetch(url)
         .then(res => res.json())
@@ -42,7 +40,7 @@ export const ImportModal = ({ opened, onClose }: ModalProps) => {
         onClose();
       });
 
-      gaEvent("import_file", { label: format });
+
     }
   };
 

@@ -1,6 +1,5 @@
 import React from "react";
 import { Menu, Flex } from "@mantine/core";
-import { event as gaEvent } from "nextjs-google-analytics";
 import { CgChevronDown } from "react-icons/cg";
 import { MdFilterListAlt } from "react-icons/md";
 import { VscSearchFuzzy, VscJson, VscGroupByRefType } from "react-icons/vsc";
@@ -13,7 +12,7 @@ export const ToolsMenu = () => {
   return (
     <Menu shadow="md" withArrow>
       <Menu.Target>
-        <StyledToolElement onClick={() => gaEvent("show_tools_menu")}>
+        <StyledToolElement>
           <Flex align="center" gap={3}>
             Tools <CgChevronDown />
           </Flex>
@@ -24,7 +23,6 @@ export const ToolsMenu = () => {
           leftSection={<VscSearchFuzzy />}
           onClick={() => {
             setVisible("JQModal", true);
-            gaEvent("open_jq_modal");
           }}
         >
           JSON Query (jq)
@@ -33,7 +31,6 @@ export const ToolsMenu = () => {
           leftSection={<MdFilterListAlt />}
           onClick={() => {
             setVisible("JPathModal", true);
-            gaEvent("open_json_path_modal");
           }}
         >
           JSON Path
@@ -42,7 +39,6 @@ export const ToolsMenu = () => {
           leftSection={<VscJson />}
           onClick={() => {
             setVisible("SchemaModal", true);
-            gaEvent("open_schema_modal");
           }}
         >
           JSON Schema
@@ -52,7 +48,6 @@ export const ToolsMenu = () => {
           leftSection={<VscGroupByRefType />}
           onClick={() => {
             setVisible("TypeModal", true);
-            gaEvent("open_type_modal");
           }}
         >
           Generate Type
