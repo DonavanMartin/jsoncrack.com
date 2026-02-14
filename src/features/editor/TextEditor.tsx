@@ -1,9 +1,16 @@
 import React, { useCallback, useRef, useEffect } from "react";
 import { LoadingOverlay } from "@mantine/core";
 import styled from "styled-components";
-import Editor, { type EditorProps, loader, type OnMount, useMonaco } from "@monaco-editor/react";
+import dynamic from "next/dynamic";
+import type { EditorProps, OnMount } from "@monaco-editor/react";
+import { loader, useMonaco } from "@monaco-editor/react";
 import useConfig from "../../store/useConfig";
 import useFile from "../../store/useFile";
+
+const Editor = dynamic(() => import("@monaco-editor/react").then(mod => ({ default: mod.Editor })), {
+  ssr: false,
+  loading: () => <div style={{ width: '100%', height: '100%', backgroundColor: '#1e1e1e' }} />,
+});
 
 loader.config({
   paths: {

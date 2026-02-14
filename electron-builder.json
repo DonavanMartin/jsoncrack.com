@@ -1,6 +1,8 @@
 {
   "appId": "com.jsoncrack.app",
   "productName": "JSON Crack",
+  "compression": "maximum",
+  "asar": true,
   "directories": {
     "output": "dist-electron",
     "buildResources": "public/assets"

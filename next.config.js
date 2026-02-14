@@ -8,17 +8,10 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const config = {
   output: "export",
   reactStrictMode: false,
-  productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: false,
   devIndicators: false,
   compiler: {
     styledComponents: true,
-  },
-  turbopack: {
-    resolveAlias: {
-      fs: {
-        browser: "./shims/empty.ts",
-      },
-    },
   },
   webpack: (config, { isServer }) => {
     config.resolve.fallback = { fs: false };

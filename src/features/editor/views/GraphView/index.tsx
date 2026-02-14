@@ -2,9 +2,9 @@ import React from "react";
 import { Box, LoadingOverlay, useComputedColorScheme } from "@mantine/core";
 import { useDebouncedValue } from "@mantine/hooks";
 import styled from "styled-components";
+import dynamic from "next/dynamic";
 import debounce from "lodash.debounce";
 import { Space } from "react-zoomable-ui";
-import { Canvas } from "reaflow";
 import type { ElkRoot } from "reaflow";
 import { useLongPress } from "use-long-press";
 import useConfig from "../../../../store/useConfig";
@@ -15,6 +15,11 @@ import { OptionsMenu } from "./OptionsMenu";
 import { SecureInfo } from "./SecureInfo";
 import { ZoomControl } from "./ZoomControl";
 import useGraph from "./stores/useGraph";
+
+const Canvas = dynamic(() => import("reaflow").then(mod => ({ default: mod.Canvas })), {
+  ssr: false,
+  loading: () => <div style={{ width: '100%', height: '100vh', backgroundColor: '#000' }} />,
+});
 
 const StyledEditorWrapper = styled.div<{ $widget: boolean; $showRulers: boolean }>`
   width: 100%;

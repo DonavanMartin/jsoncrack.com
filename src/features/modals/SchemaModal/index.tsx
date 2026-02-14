@@ -1,7 +1,12 @@
 import React from "react";
 import type { ModalProps } from "@mantine/core";
 import { Stack, Modal, Button, Text, Anchor, Group, Paper } from "@mantine/core";
-import Editor from "@monaco-editor/react";
+import dynamic from "next/dynamic";
+
+const Editor = dynamic(() => import("@monaco-editor/react"), {
+  ssr: false,
+  loading: () => <div style={{ width: '100%', height: '100%', backgroundColor: '#1e1e1e' }} />
+});
 import { toast } from "react-hot-toast";
 import { VscLinkExternal } from "react-icons/vsc";
 import useConfig from "../../../store/useConfig";
