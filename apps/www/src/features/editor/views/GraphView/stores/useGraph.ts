@@ -18,6 +18,7 @@ export interface Graph {
   aboveSupportedLimit: boolean;
   collapsedNodeIds: Set<string>;
   skipAutoCenter: boolean;
+  collapseAllWasCalled: boolean;
 }
 
 const initialStates: Graph = {
@@ -32,6 +33,7 @@ const initialStates: Graph = {
   aboveSupportedLimit: false,
   collapsedNodeIds: new Set(),
   skipAutoCenter: false,
+  collapseAllWasCalled: false,
 };
 
 interface GraphActions {
@@ -51,6 +53,7 @@ interface GraphActions {
   expandAll: () => void;
   collapseAll: () => void;
   setSkipAutoCenter: (skip: boolean) => void;
+  setCollapseAllWasCalled: (called: boolean) => void;
   getFilteredGraph: () => { nodes: NodeData[]; edges: EdgeData[] };
 }
 
@@ -112,6 +115,7 @@ const useGraph = create<Graph & GraphActions>((set, get) => ({
   toggleFullscreen: fullscreen => set({ fullscreen }),
   setViewPort: viewPort => set({ viewPort }),
   setSkipAutoCenter: (skip: boolean) => set({ skipAutoCenter: skip }),
+  setCollapseAllWasCalled: (called: boolean) => set({ collapseAllWasCalled: called }),
   toggleNodeCollapse: (nodeId: string) => {
     const { collapsedNodeIds } = get();
     const newCollapsedIds = new Set(collapsedNodeIds);
@@ -198,7 +202,7 @@ const useGraph = create<Graph & GraphActions>((set, get) => ({
       });
     });
 
-    set({ collapsedNodeIds });
+    set({ collapsedNodeIds, collapseAllWasCalled: true });
     
     // Center view on root element after collapsing all nodes
     setTimeout(() => {
@@ -207,6 +211,11 @@ const useGraph = create<Graph & GraphActions>((set, get) => ({
         elementExtraMarginForZoom: 100,
       });
     }, 100);
+    
+    // Reset the flag after 2 seconds
+    setTimeout(() => {
+      set({ collapseAllWasCalled: false });
+    }, 2000);
   },
   getFilteredGraph: () => {
     const { nodes, edges, collapsedNodeIds } = get();

@@ -46,6 +46,8 @@ export const ExpandCollapseButton: React.FC<ExpandCollapseButtonProps> = ({
   const toggleNodeCollapse = useGraph(state => state.toggleNodeCollapse);
   const setSkipAutoCenter = useGraph(state => state.setSkipAutoCenter);
   const viewPort = useGraph(state => state.viewPort);
+  const collapseAllWasCalled = useGraph(state => state.collapseAllWasCalled);
+  const setCollapseAllWasCalled = useGraph(state => state.setCollapseAllWasCalled);
 
   if (!hasChildren) {
     return null;
@@ -63,7 +65,7 @@ export const ExpandCollapseButton: React.FC<ExpandCollapseButtonProps> = ({
     toggleNodeCollapse(collapseId);
 
     // Apply zoom logic only for root node expand
-    if (isRootNode && isCollapsed && viewPort && viewPort.camera) {
+    if (isRootNode && isCollapsed && viewPort && viewPort.camera && collapseAllWasCalled) {
       setTimeout(() => {
         try {
           const parentNodeElement = document.querySelector(
@@ -109,6 +111,9 @@ export const ExpandCollapseButton: React.FC<ExpandCollapseButtonProps> = ({
 
             // Use recenter to adjust zoom while keeping the same center position
             viewPort.camera?.recenter(currentCenterX, currentCenterY, newZoomFactor);
+            
+            // Reset the collapse all flag
+            setCollapseAllWasCalled(false);
           }
         } catch (e) {
           console.error('Error adjusting zoom:', e);
