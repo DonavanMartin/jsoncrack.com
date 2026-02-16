@@ -1,0 +1,51 @@
+{
+  "appId": "com.jsoncrack.app",
+  "productName": "JSON Crack",
+  "compression": "maximum",
+  "asar": true,
+  "directories": {
+    "output": "dist-electron",
+    "buildResources": "public/assets"
+  },
+  "files": [
+    "out/**/*",
+    "electron/**/*"
+  ],
+  "mac": {
+    "category": "public.app-category.developer-tools",
+    "target": [
+      {
+        "target": "zip",
+        "arch": ["x64", "arm64"]
+      }
+    ],
+    "icon": "public/assets/favicon.ico",
+    "identity": null
+  },
+  "win": {
+    "target": [
+      {
+        "target": "portable",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "public/assets/favicon.ico",
+    "signAndEditExecutable": false
+  },
+  "linux": {
+    "category": "Development",
+    "target": [
+      {
+        "target": "AppImage",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "public/assets"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true
+  }
+}

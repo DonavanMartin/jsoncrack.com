@@ -12,9 +12,6 @@ export const Footer = () => {
       <Flex justify="space-between">
         <Stack gap={4} visibleFrom="sm">
           <JSONCrackLogo />
-          <Anchor href="mailto:contact@todiagram.com" fz="xs" c="dimmed">
-            contact@todiagram.com
-          </Anchor>
         </Stack>
         <Flex gap={60} visibleFrom="sm">
           <Stack gap="xs">
@@ -38,14 +35,7 @@ export const Footer = () => {
             >
               Open Source
             </Anchor>
-            <Anchor
-              href="https://todiagram.com?utm_source=jsoncrack&utm_medium=footer"
-              fz="sm"
-              c="gray.5"
-              rel="noopener"
-            >
-              ToDiagram
-            </Anchor>
+
           </Stack>
           <Stack gap="xs">
             <Text fz="sm" c="white">

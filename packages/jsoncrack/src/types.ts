@@ -16,6 +16,8 @@ export interface NodeData {
   path?: JSONPath;
   parentKey?: string;
   parentType?: string;
+  childNodeIds?: string[];
+  isCollapsed?: boolean;
 }
 
 export interface EdgeData {

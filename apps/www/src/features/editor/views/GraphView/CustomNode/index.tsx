@@ -1,9 +1,9 @@
 import React from "react";
 import { useComputedColorScheme } from "@mantine/core";
-import type { NodeData } from "jsoncrack";
 import type { NodeProps } from "reaflow";
 import { Node } from "reaflow";
 import { useModal } from "../../../../../store/useModal";
+import type { NodeData } from "../../../../../types/graph";
 import useGraph from "../stores/useGraph";
 import { ObjectNode } from "./ObjectNode";
 import { TextNode } from "./TextNode";
@@ -17,6 +17,8 @@ export interface CustomNodeProps {
 
 const CustomNodeWrapper = (nodeProps: NodeProps<NodeData>) => {
   const setSelectedNode = useGraph(state => state.setSelectedNode);
+  const viewPort = useGraph(state => state.viewPort);
+  const centerView = useGraph(state => state.centerView);
   const setVisible = useModal(state => state.setVisible);
   const colorScheme = useComputedColorScheme();
 
@@ -24,8 +26,35 @@ const CustomNodeWrapper = (nodeProps: NodeProps<NodeData>) => {
     (_: React.MouseEvent<SVGGElement, MouseEvent>, data: NodeData) => {
       if (setSelectedNode) setSelectedNode(data);
       setVisible("NodeModal", true);
+
+      // Adjust view to show the selected node
+      if (viewPort) {
+        // Wait for multiple animation frames to ensure layout has fully settled
+        // This is especially important after expand/collapse operations
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            // For root node (id "1"), center the entire view
+            if (data.id === "1") {
+              centerView();
+            } else {
+              // For other nodes, fit the specific node into view
+              const nodeElement = document.querySelector(
+                `[data-id="node-${data.id}"]`
+              ) as HTMLElement;
+              if (nodeElement && nodeElement.parentElement) {
+                viewPort.camera?.centerFitElementIntoView(
+                  nodeElement.parentElement,
+                  {
+                    elementExtraMarginForZoom: 300,
+                  }
+                );
+              }
+            }
+          });
+        });
+      }
     },
-    [setSelectedNode, setVisible]
+    [setSelectedNode, setVisible, viewPort, centerView]
   );
 
   return (

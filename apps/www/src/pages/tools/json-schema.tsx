@@ -1,7 +1,13 @@
 import React from "react";
 import Head from "next/head";
 import { Box, Button, Container, Flex, Paper, Title, Text } from "@mantine/core";
-import { Editor, type OnMount } from "@monaco-editor/react";
+import dynamic from "next/dynamic";
+import type { OnMount } from "@monaco-editor/react";
+
+const Editor = dynamic(() => import("@monaco-editor/react").then(mod => ({ default: mod.Editor })), {
+  ssr: false,
+  loading: () => <div style={{ width: '100%', height: '100%', backgroundColor: '#1e1e1e' }} />
+});
 import { JSONSchemaFaker } from "json-schema-faker";
 import { generateNextSeo } from "next-seo/pages";
 import { LuCheck, LuCircleX } from "react-icons/lu";

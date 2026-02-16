@@ -1,34 +1,32 @@
-<!-- PROJECT LOGO -->
-<p align="center">
-  <a href="https://github.com/AykutSarac/jsoncrack.com">
-   <img src="./apps/www/public/assets/192.png" height="50" alt="Logo">
-  </a>
+<!-- FORK NOTICE -->
+> **🍴 This is a fork of [AykutSarac/jsoncrack.com](https://github.com/AykutSarac/jsoncrack.com)**
+>
+> ### Fork Features
+>
+> **🖥️ Electron Desktop App Support**
+> - Run JSON Crack as a standalone desktop app on macOS, Windows, and Linux
+> - Optimized with lazy loading and ASAR compression
+> - Works offline - no internet connection required
+>
+> **🔄 Collapse/Expand Functionality for Graph Nodes**
+> - Circular +/- toggle buttons on rows with nested children (objects/arrays)
+> - Per-row collapse tracking for granular control
+> - "Expand All" and "Collapse All" options in the hamburger menu
+> - Clean graph rendering with automatic edge filtering for hidden nodes
+> - Modern, intuitive user interface
+>
+> **🔒 Privacy-First Implementation**
+> - Zero tracking, analytics, or telemetry
+> - No external third-party services
+> - All data processing happens locally in your browser
 
-  <h1 align="center">JSON Crack</h1>
-
-  <p align="center">
-    The open-source JSON Editor.
-    <br />
-    <a href="https://jsoncrack.com"><strong>Learn more »</strong></a>
-    <br />
-    <br />
-    <a href="https://todiagram.com">ToDiagram</a>
-    ·
-    <a href="https://discord.gg/yVyTtCRueq">Discord</a>
-    ·
-    <a href="https://jsoncrack.com">Website</a>
-    ·
-    <a href="https://github.com/AykutSarac/jsoncrack.com/issues">Issues</a>
-    ·
-    <a href="https://marketplace.visualstudio.com/items?itemName=AykutSarac.jsoncrack-vscode">VS Code</a>
-  </p>
-</p>
+---
 
 <!-- ABOUT THE PROJECT -->
 
 ## About the Project
 
-<img width="100%" alt="booking-screen" src="./apps/www/public/assets/editor.webp">
+<img width="100%" alt="booking-screen" src="./public/assets/editor.webp">
 
 ## Visualize JSON into interactive graphs
 
@@ -41,39 +39,15 @@ JSON Crack is a tool for visualizing JSON data in a structured, interactive grap
 * **JSON Schema**: Create JSON Schema, mock data, and validate various data formats.
 * **Advanced Tools**: Decode JWT, randomize data, and run jq or JSON path queries.
 * **Export Image**: Download your visualization as PNG, JPEG, or SVG.
-* **Privacy**: All data processing is local; nothing is stored on our servers.
+* **Privacy First**: All data processing is local; nothing is stored on our servers. Zero data collection, zero tracking.
+* **Lightweight**: Optimized with lazy loading for desktop app.
 
-## Recognition
+### Built With
 
-<a href="https://news.ycombinator.com/item?id=32626873">
-  <img
-    style="width: 250px; height: 54px;" width="250" height="54"
-    alt="Featured on Hacker News"
-    src="https://hackernews-badge.vercel.app/api?id=32626873"
-  />
-</a>
-
-<a href="https://producthunt.com/posts/JSON-Crack?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-jsoncrack" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=332281&theme=light" alt="JSON Crack | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
-
-## Integrations
-
-- [VS Code Extension](https://marketplace.visualstudio.com/items?itemName=AykutSarac.jsoncrack-vscode)
-- [npm Package (`jsoncrack`)](https://www.npmjs.com/package/jsoncrack)
-
-## Contributing
-
-- Found a bug or missing feature? Open an issue on [GitHub Issues](https://github.com/AykutSarac/jsoncrack.com/issues).
-- Want to contribute code or docs? Start with our [contribution guide](./CONTRIBUTING.md).
-
-## Sponsors & Support
-
-If you find JSON Crack useful, you can support the project by using [ToDiagram](https://todiagram.com).
-
-## Stay Up-to-Date
-
-JSON Crack officially launched as v1.0 on the 17th of February 2022 and we've come a long way so far. Watch **releases** of this repository to be notified of future updates:
-
-<a href="https://github.com/AykutSarac/jsoncrack.com"><img src="https://img.shields.io/github/stars/AykutSarac/jsoncrack.com" alt="Star at GitHub" /></a>
+- [Next.js](https://nextjs.org/?ref=jsoncrack.com)
+- [React.js](https://reactjs.org/?ref=jsoncrack.com)
+- [Reaflow](https://reaflow.dev/?ref=jsoncrack.com)
+- [Monaco Editor](https://github.com/suren-atoyan/monaco-react)
 
 <!-- GETTING STARTED -->
 
@@ -85,8 +59,8 @@ To get a local copy up and running, please follow these simple steps.
 
 Here is what you need to be able to run JSON Crack.
 
-- Node.js (Version: >=24.x)
-- pnpm (Version: >=10)
+- Node.js (Version: >=18.x)
+- Pnpm _(recommended)_
 
 
 ## Development
@@ -111,68 +85,119 @@ Here is what you need to be able to run JSON Crack.
    pnpm install
    ```
 
-4. Run the web app
+4. Run the project
 
    ```sh
-   pnpm dev:www
+   pnpm dev
 
    # Running on http://localhost:3000/
    ```
 
-### Useful Commands
+### Desktop App (Electron)
 
-From repository root:
+🖥️ This project includes Electron support for building standalone desktop applications with optimized bundle sizes.
 
-```sh
-# Web app
-pnpm dev:www
-pnpm build:www
-
-# VS Code extension
-pnpm dev:vscode
-pnpm build:vscode
-pnpm lint:vscode
-pnpm lint:fix:vscode
-
-# All workspaces
-pnpm dev
-pnpm build
-pnpm lint
-```
-
-`pnpm build:www` is the production build command used in GitHub Actions deployment.
-
-### Debug VS Code Extension
-
-1. Open repository root in VS Code.
-2. Press `F5`.
-3. Select `Run VSCode Extension (apps/vscode)` when prompted.
-4. In the Extension Development Host window, open a `.json` file and run:
-   `JSON Crack: Enable JSON Crack visualization`.
-
-### Docker
-
-🐳 Docker assets are in `apps/www`.
-If you want to run JSON Crack locally:
+**Build the desktop app:**
 
 ```console
-cd apps/www
+# Development mode:
+pnpm electron:dev
 
-# Build a Docker image with:
-docker compose build
+# Build for all platforms:
+pnpm electron:build:all
 
-# Run locally with `docker-compose`
-docker compose up
-
-# Go to http://localhost:8888
+# Build for specific platform:
+pnpm electron:build:mac    # macOS (.zip)
+pnpm electron:build:win    # Windows (.exe)
+pnpm electron:build:linux  # Linux (.AppImage)
 ```
+
+**Available builds:**
+- **macOS**: Compressed `.zip` archive (x64 and arm64)
+- **Windows**: Portable `.exe` (x64)
+- **Linux**: `.AppImage` (x64)
+
+The built applications will be available in the `dist-electron/` directory.
+
+**Performance Optimizations:**
+- Lazy-loaded Monaco Editor and Reaflow Canvas (only loaded when needed)
+- ASAR compression for reduced file size
+- Production source maps disabled
+- Tree-shakeable dependencies
+
+### Web App
+
+```sh
+# Build the Next.js static export
+pnpm build
+
+# View the optimized build
+pnpm start
+```
+
+The web version is a static export optimized for deployment to GitHub Pages or CDN. All processing happens locally in your browser - no server-side data storage or transmission.
 
 ## Configuration
 
-The supported node limit can be changed by editing `NEXT_PUBLIC_NODE_LIMIT` in `apps/www/.env`.
+The supported node limit can be changed by editing the `NEXT_PUBLIC_NODE_LIMIT` value in the `.env` file at the project root.
+
+## Privacy & Data
+
+This fork is built with **privacy first**:
+
+- ✅ **Zero data collection** - No analytics, telemetry, or tracking
+- ✅ **Local processing** - All data processing happens in your browser
+- ✅ **No server storage** - We don't store or transmit your data
+- ✅ **No cookies** - No tracking cookies or session tracking
+- ✅ **No third-party services** - No external APIs for user data
+- ✅ **Open source** - Full transparency - audit the code yourself
+
+See PRIVACY.md for detailed privacy information.
 
 <!-- LICENSE -->
 
 ## License
 
 See [`LICENSE`](/LICENSE.md) for more information.
+
+<!-- PROJECT LOGO -->
+<p align="center">
+  <a href="https://github.com/AykutSarac/jsoncrack.com">
+   <img src="./public/assets/192.png" height="50" alt="Logo">
+  </a>
+
+  <h1 align="center">JSON Crack</h1>
+
+  <p align="center">
+    The open-source JSON Editor.
+    <br />
+    <a href="https://jsoncrack.com"><strong>Learn more »</strong></a>
+    <br />
+    <br />
+    <a href="https://discord.gg/yVyTtCRueq">Discord</a>
+    ·
+    <a href="https://jsoncrack.com">Website</a>
+    ·
+    <a href="https://github.com/AykutSarac/jsoncrack.com/issues">Issues</a>
+    ·
+    <a href="https://marketplace.visualstudio.com/items?itemName=AykutSarac.jsoncrack-vscode">VS Code</a>
+  </p>
+</p>
+
+## Recognition
+
+<a href="https://news.ycombinator.com/item?id=32626873">
+  <img
+    style="width: 250px; height: 54px;" width="250" height="54"
+    alt="Featured on Hacker News"
+    src="https://hackernews-badge.vercel.app/api?id=32626873"
+  />
+</a>
+
+<a href="https://producthunt.com/posts/JSON-Crack?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-jsoncrack" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=332281&theme=light" alt="JSON Crack | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+
+## Stay Up-to-Date
+
+JSON Crack officially launched as v1.0 on the 17th of February 2022 and we've come a long way so far. Watch **releases** of this repository to be notified of future updates:
+
+<a href="https://github.com/AykutSarac/jsoncrack.com"><img src="https://img.shields.io/github/stars/AykutSarac/jsoncrack.com" alt="Star at GitHub" /></a>

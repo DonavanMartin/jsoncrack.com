@@ -2,13 +2,18 @@ import React from "react";
 import { ActionIcon, Button, Flex, Menu, Text } from "@mantine/core";
 import { useHotkeys } from "@mantine/hooks";
 import styled from "styled-components";
-import type { LayoutDirection } from "jsoncrack";
-import { event as gaEvent } from "nextjs-google-analytics";
 import { BsCheck2 } from "react-icons/bs";
-import { LuChevronRight, LuImageDown, LuMenu } from "react-icons/lu";
+import {
+  LuChevronRight,
+  LuImageDown,
+  LuMenu,
+  LuUnfoldVertical,
+  LuFoldVertical,
+} from "react-icons/lu";
 import { TiFlowMerge } from "react-icons/ti";
 import useConfig from "../../../../store/useConfig";
 import { useModal } from "../../../../store/useModal";
+import type { LayoutDirection } from "../../../../types/graph";
 import useGraph from "./stores/useGraph";
 
 const StyledFlowIcon = styled(TiFlowMerge)<{ rotate: number }>`
@@ -37,6 +42,8 @@ export const OptionsMenu = () => {
   const rulersEnabled = useConfig(state => state.rulersEnabled);
   const imagePreviewEnabled = useConfig(state => state.imagePreviewEnabled);
   const setDirection = useGraph(state => state.setDirection);
+  const expandAll = useGraph(state => state.expandAll);
+  const collapseAll = useGraph(state => state.collapseAll);
   const direction = useGraph(state => state.direction);
   const setVisible = useModal(state => state.setVisible);
   const [coreKey, setCoreKey] = React.useState("CTRL");
@@ -99,7 +106,6 @@ export const OptionsMenu = () => {
             fz={12}
             onClick={() => {
               toggleDirection();
-              gaEvent("rotate_layout", { label: direction });
             }}
             leftSection={<StyledFlowIcon rotate={rotateLayout(direction || "RIGHT")} />}
             rightSection={
@@ -110,6 +116,25 @@ export const OptionsMenu = () => {
             closeMenuOnClick={false}
           >
             Rotate Layout
+          </Menu.Item>
+          <Menu.Divider />
+          <Menu.Item
+            leftSection={<LuUnfoldVertical color="gray" />}
+            onClick={() => {
+              expandAll();
+            }}
+            closeMenuOnClick={false}
+          >
+            <Text size="xs">Expand All</Text>
+          </Menu.Item>
+          <Menu.Item
+            leftSection={<LuFoldVertical color="gray" />}
+            onClick={() => {
+              collapseAll();
+            }}
+            closeMenuOnClick={false}
+          >
+            <Text size="xs">Collapse All</Text>
           </Menu.Item>
           <Menu.Divider />
           <Menu position="right" trigger="hover" offset={0}>
@@ -131,7 +156,6 @@ export const OptionsMenu = () => {
                 leftSection={<BsCheck2 opacity={rulersEnabled ? 100 : 0} />}
                 onClick={() => {
                   toggleRulers(!rulersEnabled);
-                  gaEvent("toggle_rulers", { label: rulersEnabled ? "on" : "off" });
                 }}
               >
                 <Text size="xs">Rulers</Text>
@@ -140,7 +164,6 @@ export const OptionsMenu = () => {
                 leftSection={<BsCheck2 opacity={gesturesEnabled ? 100 : 0} />}
                 onClick={() => {
                   toggleGestures(!gesturesEnabled);
-                  gaEvent("toggle_gestures", { label: gesturesEnabled ? "on" : "off" });
                 }}
               >
                 <Text size="xs">Zoom on Scroll</Text>
@@ -149,7 +172,6 @@ export const OptionsMenu = () => {
                 leftSection={<BsCheck2 opacity={imagePreviewEnabled ? 100 : 0} />}
                 onClick={() => {
                   toggleImagePreview(!imagePreviewEnabled);
-                  gaEvent("toggle_image_preview", { label: imagePreviewEnabled ? "on" : "off" });
                 }}
               >
                 <Text size="xs">Image Link Preview</Text>

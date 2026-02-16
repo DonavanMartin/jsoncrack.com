@@ -30,21 +30,8 @@ const ExternalMode = () => {
           <Accordion.Item value="1">
             <Accordion.Control>How can I change the file size limit?</Accordion.Control>
             <Accordion.Panel>
-              The main reason for the file size limit is to prevent performance issues, not to push
-              you to upgrade. You can increase the limit by setting{" "}
+              The main reason for the file size limit is to prevent performance issues. You can increase the limit by setting{" "}
               <Code>NEXT_PUBLIC_NODE_LIMIT</Code> in your <Code>.env</Code> file.
-              <br />
-              <br />
-              If you&apos;d like to work with even larger files and unlock additional features, you
-              can upgrade to the{" "}
-              <Anchor
-                href="https://todiagram.com?utm_source=jsoncrack&utm_medium=external-mode"
-                rel="noopener"
-                target="_blank"
-              >
-                Pro
-              </Anchor>{" "}
-              version.
             </Accordion.Panel>
           </Accordion.Item>
           <Accordion.Item value="2">
@@ -110,24 +97,7 @@ const ExternalMode = () => {
               to get started.
             </Accordion.Panel>
           </Accordion.Item>
-          <Accordion.Item value="6">
-            <Accordion.Control>
-              What is the difference between JSON Crack and ToDiagram?
-            </Accordion.Control>
-            <Accordion.Panel>
-              JSON Crack is a free and open-source tool for visualizing JSON data. ToDiagram is the
-              professional version that offers advanced features, higher limits, and the ability to
-              edit data directly from diagrams. You can learn more or upgrade at{" "}
-              <Anchor
-                href="https://todiagram.com?utm_source=jsoncrack&utm_medium=external-mode"
-                rel="noopener"
-                target="_blank"
-              >
-                todiagram.com
-              </Anchor>
-              .
-            </Accordion.Panel>
-          </Accordion.Item>
+
         </Accordion>
       </Group>
       <Flex justify="center" align="center" gap="sm" mt="md">
@@ -138,15 +108,6 @@ const ExternalMode = () => {
           fz="sm"
         >
           GitHub
-        </Anchor>
-        <Text c="dimmed">•</Text>
-        <Anchor
-          href="https://todiagram.com?utm_source=jsoncrack&utm_medium=external-mode"
-          rel="noopener"
-          target="_blank"
-          fz="sm"
-        >
-          ToDiagram
         </Anchor>
         <Text c="dimmed">•</Text>
         <Anchor href="https://x.com/aykutsarach" rel="noopener" target="_blank" fz="sm">

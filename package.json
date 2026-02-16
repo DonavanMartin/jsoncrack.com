@@ -3,6 +3,8 @@
   "private": true,
   "license": "Apache-2.0",
   "homepage": "https://jsoncrack.com",
+  "version": "0.0.0",
+  "description": "Seamlessly visualize your JSON data instantly into graphs",
   "author": {
     "name": "Aykut Saraç",
     "email": "aykutsarac0@gmail.com"
@@ -10,6 +12,7 @@
   "bugs": {
     "url": "https://github.com/AykutSarac/jsoncrack.com/issues"
   },
+  "main": "electron/main.js",
   "scripts": {
     "dev": "turbo run dev",
     "dev:www": "turbo run dev --filter=www",
@@ -23,7 +26,13 @@
     "lint:fix": "turbo run lint:fix",
     "lint:fix:vscode": "turbo run lint:fix --filter=vscode",
     "analyze": "turbo run analyze",
-    "clean": "turbo run clean"
+    "clean": "turbo run clean",
+    "electron:dev": "turbo run build && electron .",
+    "electron:build": "turbo run build && electron-builder",
+    "electron:build:win": "turbo run build && electron-builder --win",
+    "electron:build:mac": "turbo run build && electron-builder --mac",
+    "electron:build:linux": "turbo run build && electron-builder --linux",
+    "electron:build:all": "turbo run build && electron-builder --win --linux"
   },
   "devDependencies": {
     "turbo": "^2.8.8"

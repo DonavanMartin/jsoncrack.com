@@ -1,6 +1,5 @@
 import { Menu, Flex, SegmentedControl } from "@mantine/core";
 import { useSessionStorage } from "@mantine/hooks";
-import { event as gaEvent } from "nextjs-google-analytics";
 import { CgChevronDown } from "react-icons/cg";
 import { ViewMode } from "../../../enums/viewMode.enum";
 import { StyledToolElement } from "./styles";
@@ -14,7 +13,7 @@ export const ViewMenu = () => {
   return (
     <Menu shadow="md" closeOnItemClick={false} withArrow>
       <Menu.Target>
-        <StyledToolElement onClick={() => gaEvent("show_view_menu")}>
+        <StyledToolElement>
           <Flex align="center" gap={3}>
             View <CgChevronDown />
           </Flex>
@@ -27,7 +26,6 @@ export const ViewMenu = () => {
           value={viewMode}
           onChange={e => {
             setViewMode(e as ViewMode);
-            gaEvent("change_view_mode", { label: e });
           }}
           data={[
             { value: ViewMode.Graph, label: "Graph" },

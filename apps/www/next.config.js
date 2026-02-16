@@ -9,16 +9,10 @@ const config = {
   output: "export",
   transpilePackages: ["jsoncrack"],
   reactStrictMode: false,
-  productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: false,
+  devIndicators: false,
   compiler: {
     styledComponents: true,
-  },
-  turbopack: {
-    resolveAlias: {
-      fs: {
-        browser: "./shims/empty.ts",
-      },
-    },
   },
   webpack: (config, { isServer }) => {
     config.resolve.fallback = { fs: false };
