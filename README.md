@@ -1,14 +1,17 @@
 <!-- FORK NOTICE -->
+
 > **🍴 This is a fork of [AykutSarac/jsoncrack.com](https://github.com/AykutSarac/jsoncrack.com)**
 >
 > ### Fork Features
 >
 > **🖥️ Electron Desktop App Support**
+>
 > - Run JSON Crack as a standalone desktop app on macOS, Windows, and Linux
 > - Optimized with lazy loading and ASAR compression
 > - Works offline - no internet connection required
 >
 > **🔄 Collapse/Expand Functionality for Graph Nodes**
+>
 > - Circular +/- toggle buttons on rows with nested children (objects/arrays)
 > - Per-row collapse tracking for granular control
 > - "Expand All" and "Collapse All" options in the hamburger menu
@@ -16,6 +19,7 @@
 > - Modern, intuitive user interface
 >
 > **🔒 Privacy-First Implementation**
+>
 > - Zero tracking, analytics, or telemetry
 > - No external third-party services
 > - All data processing happens locally in your browser
@@ -26,21 +30,21 @@
 
 ## About the Project
 
-<img width="100%" alt="booking-screen" src="./public/assets/editor.webp">
+<img width="100%" alt="booking-screen" src="./apps/www/public/assets/editor.webp">
 
 ## Visualize JSON into interactive graphs
 
 JSON Crack is a tool for visualizing JSON data in a structured, interactive graphs, making it easier to explore, format, and validate JSON. It offers features like converting JSON to other formats (CSV, YAML), generating JSON Schema, executing queries, and exporting visualizations as images. Designed for both readability and usability.
 
-* **Visualizer**: Instantly convert JSON, YAML, CSV, XML, and TOML into interactive graphs or trees in dark or light mode.
-* **Convert**: Seamlessly transform data formats, like JSON to CSV or XML to JSON, for easy sharing.
-* **Format & Validate**: Beautify and validate JSON, YAML, and CSV for clear and accurate data.
-* **Code Generation**: Generate TypeScript interfaces, Golang structs, and JSON Schema.
-* **JSON Schema**: Create JSON Schema, mock data, and validate various data formats.
-* **Advanced Tools**: Decode JWT, randomize data, and run jq or JSON path queries.
-* **Export Image**: Download your visualization as PNG, JPEG, or SVG.
-* **Privacy First**: All data processing is local; nothing is stored on our servers. Zero data collection, zero tracking.
-* **Lightweight**: Optimized with lazy loading for desktop app.
+- **Visualizer**: Instantly convert JSON, YAML, CSV, XML, and TOML into interactive graphs or trees in dark or light mode.
+- **Convert**: Seamlessly transform data formats, like JSON to CSV or XML to JSON, for easy sharing.
+- **Format & Validate**: Beautify and validate JSON, YAML, and CSV for clear and accurate data.
+- **Code Generation**: Generate TypeScript interfaces, Golang structs, and JSON Schema.
+- **JSON Schema**: Create JSON Schema, mock data, and validate various data formats.
+- **Advanced Tools**: Decode JWT, randomize data, and run jq or JSON path queries.
+- **Export Image**: Download your visualization as PNG, JPEG, or SVG.
+- **Privacy First**: All data processing is local; nothing is stored on our servers. Zero data collection, zero tracking.
+- **Lightweight**: Optimized with lazy loading for desktop app.
 
 ### Built With
 
@@ -61,7 +65,6 @@ Here is what you need to be able to run JSON Crack.
 
 - Node.js (Version: >=18.x)
 - Pnpm _(recommended)_
-
 
 ## Development
 
@@ -113,6 +116,7 @@ pnpm electron:build:linux  # Linux (.AppImage)
 ```
 
 **Available builds:**
+
 - **macOS**: Compressed `.zip` archive (x64 and arm64)
 - **Windows**: Portable `.exe` (x64)
 - **Linux**: `.AppImage` (x64)
@@ -120,6 +124,7 @@ pnpm electron:build:linux  # Linux (.AppImage)
 The built applications will be available in the `dist-electron/` directory.
 
 **Performance Optimizations:**
+
 - Lazy-loaded Monaco Editor and Reaflow Canvas (only loaded when needed)
 - ASAR compression for reduced file size
 - Production source maps disabled
@@ -163,7 +168,7 @@ See [`LICENSE`](/LICENSE.md) for more information.
 <!-- PROJECT LOGO -->
 <p align="center">
   <a href="https://github.com/AykutSarac/jsoncrack.com">
-   <img src="./public/assets/192.png" height="50" alt="Logo">
+   <img src="./apps/www/public/assets/192.png" height="50" alt="Logo">
   </a>
 
   <h1 align="center">JSON Crack</h1>
